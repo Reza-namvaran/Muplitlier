@@ -1,1 +1,7 @@
 https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10693435
+
+2. Approximate 8-bit multipliers and their physical design implementation
+	-- https://www.sciencedirect.com/science/article/pii/S277267112300195X
+
+3. Design and Analysis of Approximate Multipliers
+	-- https://www.researchgate.net/publication/368293010_Design_and_Analysis_of_Approximate_Multipliers
