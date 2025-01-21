@@ -6,7 +6,8 @@ ENTITY Multiplier_4x4 is
         A : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
         B : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
         P : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
-    );
+        -- Product term would have 8 bits;
+        );
 END Multiplier_4x4;
 
 architecture BEHAVIORAL OF Multiplier_4x4 is
