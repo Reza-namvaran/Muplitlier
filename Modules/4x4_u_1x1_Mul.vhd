@@ -10,7 +10,36 @@ ENTITY Multiplier_4x4 IS
     );
 END Multiplier_4x4;
 
-ARCHITECTURE BEHAVIORAL OF Multiplier_4x4 IS
+ARCHITECTURE STRUCTURAL OF Multiplier_4x4 IS
+    -- NOTE: Declaring components of previous designs
+    COMPONENT Multiplier_1x1
+        PORT (
+            A : IN STD_LOGIC;
+            B : IN STD_LOGIC;
+            P : OUT STD_LOGIC
+        );
+    END COMPONENT;
+
+    COMPONENT f_addr
+        PORT (
+            A, B, Cin : IN STD_LOGIC;
+            S, Cout : OUT STD_LOGIC
+        );
+    END COMPONENT;
+
+    TYPE partials_arr IS ARRAY (0 TO 3, 0 TO 3) OF STD_LOGIC;
+    -- DESCRIPTION: declaring signals to hold the partial products
+    SIGNAL partials : partials_arr;
+
 BEGIN
-    -- TODO
-END BEHAVIORAL;
+    -- Generating partial products
+    ROWS: FOR i IN 0 TO 3 GENERATE
+        COLS: FOR j IN 0 TO 3 GENERATE
+            MUL_UNIT: Multiplier_1x1 PORT MAP (
+                A => A(i),
+                B => B(j),
+                P => partials(i, j)
+            );
+        END GENERATE COLS;
+    END GENERATE ROWS;
+END STRUCTURAL;
