@@ -1,0 +1,3 @@
+# Muplitlier
+
+4 bit multiplier using approximate computing ...
