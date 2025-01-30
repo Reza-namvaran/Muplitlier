@@ -5,7 +5,7 @@ ENTITY CLA_adder IS
     PORT (
         A, B: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
         Cin: IN STD_LOGIC;
-        Sum: OUT STD_LOGIC_VECTOR(3 DOWNTO 1);
+        Sum: OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
         Cout: OUT STD_LOGIC
     );
 END ENTITY; -- Carry Look Ahead adder
