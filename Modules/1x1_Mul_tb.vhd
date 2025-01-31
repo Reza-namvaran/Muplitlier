@@ -43,7 +43,7 @@ BEGIN
         in_B <= NOT in_B;
         WAIT FOR time_interval;
         ASSERT out_P = '1' REPORT "1 * 1 failed" SEVERITY error;
-        REPORT "All tests completed successfully";
+        
         WAIT;
     END PROCESS;
 END BEHAVIORAL;

@@ -1,12 +1,12 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
-USE IEEE.NUMERIC_STD.ALL; -- For numeric conversions
+USE IEEE.NUMERIC_STD.ALL;
 
-ENTITY tb_Multiplier_4x4 IS
-END tb_Multiplier_4x4;
+ENTITY tb_Multiplier_4x4_u_1x1 IS
+END tb_Multiplier_4x4_u_1x1;
 
-ARCHITECTURE Behavioral OF tb_Multiplier_4x4 IS
-    COMPONENT Multiplier_4x4
+ARCHITECTURE Behavioral OF tb_Multiplier_4x4_u_1x1 IS
+    COMPONENT Multiplier_4x4_u_1x1
         PORT (
             A : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
             B : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -19,13 +19,13 @@ ARCHITECTURE Behavioral OF tb_Multiplier_4x4 IS
     SIGNAL P_expected : INTEGER;
 
 BEGIN
-    UUT: Multiplier_4x4 PORT MAP (
+    UUT : Multiplier_4x4_u_1x1 PORT MAP(
         A => A_tb,
         B => B_tb,
         P => P_tb
     );
 
-    STIMULUS: PROCESS
+    STIMULUS : PROCESS
     BEGIN
         -- Test Case 1: 0 * 0
         A_tb <= "0000";
@@ -63,7 +63,6 @@ BEGIN
         WAIT FOR 10 ns;
         ASSERT P_tb = "00110000" REPORT "12*4 Error" SEVERITY ERROR;
 
-        -- Automatic check for all combinations
         FOR i IN 0 TO 15 LOOP
             FOR j IN 0 TO 15 LOOP
                 A_tb <= STD_LOGIC_VECTOR(TO_UNSIGNED(i, 4));
@@ -71,12 +70,11 @@ BEGIN
                 P_expected <= i * j;
                 WAIT FOR 10 ns;
                 ASSERT UNSIGNED(P_tb) = TO_UNSIGNED(P_expected, 8)
-                    REPORT "Mismatch at " & INTEGER'IMAGE(i) & "*" & INTEGER'IMAGE(j)
+                REPORT "Mismatch at " & INTEGER'IMAGE(i) & "*" & INTEGER'IMAGE(j)
                     SEVERITY WARNING;
             END LOOP;
         END LOOP;
 
-        REPORT "Simulation completed";
         WAIT;
     END PROCESS;
 END Behavioral;
